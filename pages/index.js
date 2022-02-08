@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React,{ useState } from 'react';
+
 
 
 export default function App() {
@@ -10,18 +11,62 @@ export default function App() {
   //COMPONENTES
   const Tela=(valor,resultado)=>{
     return(
-      <div>
-        <span>{valor}</span>
-        <span>{resultado}</span>
+      <div style={visor}>
+        <span style={value}>{valor}</span>
+        <span style={res}>{resultado}</span>
       </div>
     )
   }
   const btn=(label,onCLick)=>{
     return(
-      <button onClick={onCLick}>{label}</button>
+      <button style={botao} onClick={onCLick}>{label}</button>
     )
   }
-  
+
+  //STYLE
+  const container={
+    display: 'flex',
+    justifyContent:'flex-start',
+    alignItems:'center',
+    flexDirection:'column',
+    width: 300,
+    border: '1px solid #999'
+  }
+  const but={
+    flexDirection:'row',
+    flexWrap:'wrap',
+
+  }
+  const visor={
+    display: 'flex',
+    paddingleft:20,
+    paddingright:20,
+    justifyContent:'center',
+    alignItems:'flex-start',
+    backgroundColor:'#444',
+    flexDirection:'column',
+    width:300,
+  }
+  const value={
+    fontSize: 25,
+    color:'#fff',
+    height:20 ,
+  }
+  const res={
+    fontSize: 35,
+    color:'#fff',
+    height:35,
+    
+  }
+  const botao={
+    fontSize:30,
+    height:75,
+    width:75,
+    padding:20,
+    backgroundColor:'#000',
+    color:'#fff',
+    textAlign:'center',
+  }
   //FUNÇÕES
   const addDigitoTela=(d)=>{
     if((d=='+'||d=='-'||d=='*'||d=='/')&& operado){
@@ -64,10 +109,10 @@ export default function App() {
   
   return (
     <>
-      <div>
+      <div style={container}>
         <h3>Calculadora</h3>
         {Tela(valorTela,resultado)}
-        <div>
+        <div style={but}>
           {btn('AC',limparMemoria)}
           {btn('(',()=>addDigitoTela('('))}
           {btn(')',()=>addDigitoTela(')'))}
@@ -91,5 +136,5 @@ export default function App() {
         </div>
       </div>
     </>
-  )
+  );
 }
