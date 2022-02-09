@@ -70,7 +70,7 @@ export default function App() {
     alignItems:'center',
     flexDirection:'column',
     width: 300,
-    border: '1px solid #999'
+    border: '1px solid #000'
   }
   const but={
     flexDirection:'row',
