@@ -1,0 +1,48 @@
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container {
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 300;
+    border: 1px solid #999;
+}
+.but {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.visor {
+    display: flex;
+    padding-left: 20;
+    padding-right: 20;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #444;
+    flex-direction: column;
+    width: 300;
+}
+.value{
+    font-size: 25;
+    color: #fff;
+    height: 20;
+}
+.res{
+    font-size: 35;
+    color: #fff;
+    height: 35;
+}
+.botao{
+    font-size: 30;
+    height: 75;
+    width: 75;
+    padding: 20;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+}

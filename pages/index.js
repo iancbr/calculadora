@@ -23,6 +23,46 @@ export default function App() {
     )
   }
 
+  //FUNÇÕES
+  const addDigitoTela=(d)=>{
+    if((d=='+'||d=='-'||d=='*'||d=='/')&& operado){
+      setOperado(false)
+      setValorTela(resultado+d)
+      return
+    }
+    if(operado){
+      setValorTela(d)
+      setOperado(false)
+      return
+    }
+    const valorDigitadoTela=valorTela+d
+    setValorTela(valorDigitadoTela)
+  }
+  const limparMemoria=()=>{
+    setOperado(false)
+    setValorTela('')
+    setResultado(0)
+    setAcumulador(0)
+    return
+  }
+  const Operacao=(oper)=>{
+    if(oper=='bs'){
+      let vtela=valorTela
+      vtela=vtela.substring(0,(vtela.length-1))
+      setValorTela(vtela)
+      setOperado(false)
+      return
+    }
+    try{
+      const r=eval(valorTela)
+      setAcumulador(r)
+      setResultado(r)
+      setOperado(true)
+    }catch{
+      setResultado('ERRO')
+    }    
+  }
+  
   //STYLE
   const container={
     display: 'flex',
@@ -67,46 +107,9 @@ export default function App() {
     color:'#fff',
     textAlign:'center',
   }
-  //FUNÇÕES
-  const addDigitoTela=(d)=>{
-    if((d=='+'||d=='-'||d=='*'||d=='/')&& operado){
-      setOperado(false)
-      setValorTela(resultado+d)
-      return
-    }
-    if(operado){
-      setValorTela(d)
-      setOperado(false)
-      return
-    }
-    const valorDigitadoTela=valorTela+d
-    setValorTela(valorDigitadoTela)
-  }
-  const limparMemoria=()=>{
-    setOperado(false)
-    setValorTela('')
-    setResultado(0)
-    setAcumulador(0)
-    return
-  }
-  const Operacao=(oper)=>{
-    if(oper=='bs'){
-      let vtela=valorTela
-      vtela=vtela.substring(0,(vtela.lenght-1))
-      setValorTela(vtela)
-      setOperado(false)
-      return
-    }
-    try{
-      const r=eval(valorTela)
-      setAcumulador(r)
-      setResultado(r)
-      setOperado(true)
-    }catch{
-      setResultado('ERRO')
-    }    
-  }
   
+  //CONTAINER
+
   return (
     <>
       <div style={container}>
@@ -129,8 +132,8 @@ export default function App() {
           {btn('2',()=>addDigitoTela('2'))}
           {btn('3',()=>addDigitoTela('3'))}
           {btn('+',()=>addDigitoTela('+'))}
-          {btn('0',()=>addDigitoTela('0'))}
           {btn('.',()=>addDigitoTela('.'))}
+          {btn('0',()=>addDigitoTela('0'))}
           {btn('<-',()=>Operacao('bs'))}
           {btn('=',()=>Operacao('='))}
         </div>
