@@ -26,7 +26,6 @@ export default function App() {
 
   //FUNÇÕES
   const addDigitoTela=(d)=>{
-    setCont(0)
     if((d=='+'||d=='-'||d=='*'||d=='/')&& operado){
       setOperado(false)
       setValorTela(resultado+d)
@@ -41,9 +40,8 @@ export default function App() {
     setValorTela(valorDigitadoTela)
     
   }
-  const oper=(o)=>{
-    if((o=='+'||o=='-'||o=='*'||o=='/') && cont<1){
-      addDigitoTela(o)
+  /*const oper=(o)=>{
+    if(setOperado(false)&& cont==0){
       setCont(1)
       return
     }
@@ -51,9 +49,8 @@ export default function App() {
       setValorTela('ERRO')
       return
     }
-  }
-  const limparMemoria=()=>{
-    setCont(0)
+  }*/
+  const limparMemoria=()=>{ 
     setOperado(false)
     setValorTela('')
     setResultado(0)
@@ -61,16 +58,22 @@ export default function App() {
     return
   }
   const limparvTela=()=>{
-    setCont(0)
     setOperado(true)
     setValorTela('')
     setResultado(resultado)
     setAcumulador(0)
     return
   }
+  const mudarSinal=()=>{
+    if(resultado==0){
+      setValorTela(valorTela*(-1))
+    }
+    else if(resultado!=0){
+      setResultado(resultado*(-1))
+    }
+  }
   
   const Operacao=(oper)=>{
-    setCont(0)
     if(oper=='bs'){
       let vtela=valorTela
       vtela=vtela.substring(0,(vtela.length-1))
@@ -117,7 +120,7 @@ export default function App() {
           {btn('2',()=>addDigitoTela('2'))}
           {btn('3',()=>addDigitoTela('3'))}
           {btn('+',()=>addDigitoTela('+'))}
-          {btn('+/-',()=>addDigitoTela(')'))}
+          {btn('+/-',mudarSinal)}
           {btn('.',()=>addDigitoTela('.'))}
           {btn('0',()=>addDigitoTela('0'))}
           {btn('=',()=>Operacao('='))}
