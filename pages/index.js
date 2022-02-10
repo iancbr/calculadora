@@ -72,6 +72,16 @@ export default function App() {
       setResultado(resultado*(-1))
     }
   }
+  const raizQuadrada=()=>{
+    if(valorTela>0){
+      setValorTela(Math.sqrt(valorTela)) 
+    }
+    else{
+      setResultado('ERRO')
+      setValorTela('')
+    }
+    return
+  }
   
   const Operacao=(oper)=>{
     if(oper=='bs'){
@@ -106,7 +116,7 @@ export default function App() {
           {btn('<-',()=>Operacao('bs'))}
           {btn('(',()=>addDigitoTela('('))}
           {btn(')',()=>addDigitoTela(')'))}
-          {btn('²√x',()=>addDigitoTela(')'))}
+          {btn('²√x',raizQuadrada)}
           {btn('/',()=>addDigitoTela('/'))}
           {btn('7',()=>addDigitoTela('7'))}
           {btn('8',()=>addDigitoTela('8'))}
