@@ -7,7 +7,7 @@
     flex-direction: column;
     width: 300px;
     border: 1px solid #000;
-    margin-left: 500px;
+    /*margin-left: 500px;*/
 }
 .but {
     flex-direction: row;

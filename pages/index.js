@@ -38,22 +38,35 @@ export default function App() {
       return
     }
     const valorDigitadoTela=valorTela+d
-    setValorTela(valorDigitadoTela)
-    
+    setValorTela(valorDigitadoTela)   
   }
-  const oper=()=>{
-    if(addDigitoTela && cont==0){
-      setOperado(false)
-      setValorTela(valorTela)
-      setCont(1)
-      return
-    }
-    if(addDigitoTela && cont>0){
+  
+  /*const limiteOp=(o)=>{
+    if((o=='+'||o=='-'||o=='*'||o=='/') && cont==0){
       setOperado(true)
-      setResultado('ERRO')
+      let v1= valorTela+o
+      v1=v1.substring(0,(v1.length))
+      setValorTela(v1)
       return
     }
+    const limOp=(v1+o)
+    setValorTela(limOp)
   }
+  const limitedig=()=>{
+    if(operado){
+      let limTela=valorTela
+      valorTela<=valorTela.substring(0,7)
+      setValorTela(limTela)
+      setOperado(false)
+      return
+    }
+    else{
+      setValorTela(valorTela)
+      setOperado(true)
+      return
+    }
+  }*/
+  
   const limparMemoria=()=>{ 
     setOperado(false)
     setValorTela('')
@@ -77,12 +90,13 @@ export default function App() {
     }
   }
   const raizQuadrada=()=>{
-    if(valorTela>0){
-      setValorTela(Math.sqrt(valorTela)) 
-    }
     if(resultado>0){
       setResultado(Math.sqrt(resultado))
-      setValorTela('')
+      setValorTela('²√'+resultado)
+    }
+    else if(valorTela>0){
+      setResultado(Math.sqrt(valorTela))
+      setValorTela('²√'+valorTela) 
     }
     else{
       setResultado('ERRO')
@@ -93,7 +107,7 @@ export default function App() {
 
   const porcentagem=()=>{
       
-      return
+    return
   }
   
   const Operacao=(oper)=>{
@@ -134,7 +148,7 @@ export default function App() {
           {btn('7',()=>addDigitoTela('7'))}
           {btn('8',()=>addDigitoTela('8'))}
           {btn('9',()=>addDigitoTela('9'))}
-          {btn('*',()=>addDigitoTela('*'))}
+          {btn('*',()=>addDigitoTela('*') && oper)}
           {btn('4',()=>addDigitoTela('4'))}
           {btn('5',()=>addDigitoTela('5'))}
           {btn('6',()=>addDigitoTela('6'))}
