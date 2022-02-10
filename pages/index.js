@@ -1,3 +1,4 @@
+import next from 'next';
 import React,{ useState } from 'react';
 import styles from './index.module.css'
 
@@ -40,16 +41,19 @@ export default function App() {
     setValorTela(valorDigitadoTela)
     
   }
-  /*const oper=(o)=>{
-    if(setOperado(false)&& cont==0){
+  const oper=()=>{
+    if(addDigitoTela && cont==0){
+      setOperado(false)
+      setValorTela(valorTela)
       setCont(1)
       return
     }
-    else{
-      setValorTela('ERRO')
+    if(addDigitoTela && cont>0){
+      setOperado(true)
+      setResultado('ERRO')
       return
     }
-  }*/
+  }
   const limparMemoria=()=>{ 
     setOperado(false)
     setValorTela('')
@@ -76,11 +80,20 @@ export default function App() {
     if(valorTela>0){
       setValorTela(Math.sqrt(valorTela)) 
     }
+    if(resultado>0){
+      setResultado(Math.sqrt(resultado))
+      setValorTela('')
+    }
     else{
       setResultado('ERRO')
       setValorTela('')
     }
     return
+  }
+
+  const porcentagem=()=>{
+      
+      return
   }
   
   const Operacao=(oper)=>{
@@ -110,7 +123,7 @@ export default function App() {
         <h3>Calculadora</h3>
         {Tela(valorTela,resultado)}
         <div className={styles.but}>
-          {btn('%',limparvTela)}
+          {btn('%',porcentagem)}
           {btn('C',limparvTela)}
           {btn('AC',limparMemoria)}
           {btn('<-',()=>Operacao('bs'))}
